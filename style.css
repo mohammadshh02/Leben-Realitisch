@@ -124,3 +124,17 @@ button, .button-like {
 .history { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
 .history th, .history td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line); }
 .history td:not(:first-child), .history th:not(:first-child) { text-align: right; }
+
+/* Plan 2027 */
+.flow { display: flex; flex-direction: column; align-items: stretch; gap: 4px; }
+.flow-box { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; text-align: center; font-size: 0.93rem; }
+.flow-box.accent { background: var(--accent-soft); border-color: transparent; }
+.flow-arrow { text-align: center; color: var(--muted); font-size: 0.85rem; }
+.pillar .quarter { margin-top: 12px; }
+.pillar .quarter h3 { margin: 0 0 6px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+.check { display: flex; gap: 10px; align-items: flex-start; padding: 5px 0; cursor: pointer; }
+.check input { margin-top: 4px; width: 18px; height: 18px; flex: none; accent-color: var(--accent); }
+.check.done span { color: var(--muted); text-decoration: line-through; }
+.progress { font-size: 0.85rem; color: var(--muted); font-weight: normal; }
+.routine td:first-child { color: var(--muted); white-space: nowrap; padding-right: 12px; }
+.routine td { text-align: left !important; vertical-align: top; }

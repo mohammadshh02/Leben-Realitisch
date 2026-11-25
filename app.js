@@ -9,14 +9,99 @@ const STORAGE_KEY = "leben-realistisch-v1";
 
 // Zeitblöcke einer Woche. unit "day" = Stunden pro Tag (x7), "week" = pro Woche.
 const TIME_FIELDS = [
-  { key: "sleep",   label: "Schlaf",                               unit: "day",  def: 8 },
-  { key: "work",    label: "Arbeit / Uni / Schule",                unit: "week", def: 40 },
-  { key: "commute", label: "Pendeln",                              unit: "week", def: 5 },
-  { key: "chores",  label: "Essen, Haushalt, Körperpflege",        unit: "day",  def: 2.5 },
-  { key: "fixed",   label: "Feste Termine (Familie, Arzt, Ämter …)", unit: "week", def: 3 },
-  { key: "rest",    label: "Erholung, Freunde, Handy, Nichtstun",  unit: "day",  def: 2,
+  { key: "sleep",    label: "Schlaf",                                 unit: "day",  def: 7.5,
+    note: "Nicht kürzen: Schlaf ist Looks, Stimme und Fokus." },
+  { key: "job1",     label: "Elektrojob",                             unit: "week", def: 40,
+    note: "geschätzt, bitte echten Wert eintragen" },
+  { key: "job2",     label: "KI-Job (Massoud)",                       unit: "week", def: 25,
+    note: "geschätzt, bitte echten Wert eintragen" },
+  { key: "commute",  label: "Pendeln / Fahrten",                      unit: "week", def: 7 },
+  { key: "security", label: "Security koordinieren (Bruder & Onkel)", unit: "week", def: 1 },
+  { key: "chores",   label: "Essen, Haushalt, Körperpflege",          unit: "day",  def: 2 },
+  { key: "fixed",    label: "Feste Termine (Familie, Arzt, Ämter …)", unit: "week", def: 3 },
+  { key: "rest",     label: "Erholung, Familie, Freunde, Handy",      unit: "day",  def: 1.5,
     note: "Kein Luxus. Wer das auf 0 setzt, plant sich kaputt." },
 ];
+
+/* ------------------------- Plan 2027 --------------------------- */
+
+const PLAN = {
+  pillars: [
+    {
+      id: "geld", title: "1 · Geld & Baulia UG",
+      goal: "6.600 € netto fest. Nebenbei nur Deals, die Plus machen.",
+      quarters: [
+        ["Q1", ["KI-Job startet (Feb): reinkommen, liefern, Provision verstehen",
+                "6.600 € netto laufen stabil, fester Monatsbetrag aufs Kapitalkonto",
+                "Security: Bruder & Onkel arbeiten, fester Anteil geht in den Kapital-Stack",
+                "Baulia UG mit Bruder sauber aufgesetzt (Konto, Aufgabenteilung, Regeln)"]],
+        ["Q2", ["Ersten Immo-Deal mit Sweat Equity abschließen (Vermittlung / Tippgeber / Grundstück)",
+                "Deal-Checkliste: Wie viel Plus? Was ist das Worst Case?"]],
+        ["Q3", ["Zweiter Deal",
+                "Ablauf dokumentieren: Woher kommen Deals, was hat Geld gebracht?"]],
+        ["Q4", ["Jahresbilanz: Kapital-Stack, Gewinne, was reinvestiert wurde",
+                "Entscheidung: Baulia AI 2028 starten, ja oder nein?"]],
+      ],
+    },
+    {
+      id: "redner", title: "2 · Redner: Islam, Rhetorik, Verkauf",
+      goal: "Ein Skill, viele Bühnen: Jede Schulung, jedes Verkaufsgespräch und jedes Gespräch über den Islam ist Training.",
+      quarters: [
+        ["Q1", ["Täglich nach Fajr 25 Min. Islam-Wissen mit Notizen",
+                "Jede Woche 1 Schulung oder Rede mit dem Handy aufnehmen und anschauen"]],
+        ["Q2", ["Rhetorik-Grundlagen: Stimme, Pausen, Storytelling (1 Buch oder Kurs)",
+                "Erste kleine Gesprächsrunde über den Islam"]],
+        ["Q3", ["Erster eigener Vortrag vor Publikum",
+                "Verkauf: eigenes Gesprächsskript für Schulungen und Immo-Deals"]],
+        ["Q4", ["1 Vortrag pro Monat",
+                "Schulungen laufen sicher, ruhig und charismatisch"]],
+      ],
+    },
+    {
+      id: "koerper", title: "3 · Körper & Ausstrahlung",
+      goal: "Lean, gesund, gepflegt. Ziel 10–13 % Körperfett, nicht weniger.",
+      quarters: [
+        ["Q1", ["3× pro Woche Krafttraining, fest im Kalender",
+                "Protein-Routine und 7,5 h Schlaf",
+                "Startfoto, Gewicht und Bauchumfang festhalten"]],
+        ["Q2", ["Hautpflege, Haare/Bart und Haltung als feste Routine",
+                "Style-Basics: wenige Teile, die richtig sitzen"]],
+        ["Q3", ["Sichtbar leaner, Ziel ca. 12 % Körperfett"]],
+        ["Q4", ["10–13 % Körperfett halten, Energie und Blutwerte gut"]],
+      ],
+    },
+  ],
+  goals: [
+    { name: "Körper: 3× Training", hours: 3, step: "Trainingstage fest in den Kalender eintragen",
+      why: "Präsenz, Energie, Ausstrahlung" },
+    { name: "Redner: Islam-Wissen + 1 Aufnahme/Woche", hours: 3, step: "Morgen nach Fajr 25 Min. lesen und Notizen machen",
+      why: "Islam-Vorträge, Charisma, Verkauf" },
+    { name: "Baulia: erster Immo-Deal", hours: 2, step: "10 mögliche Deal-Quellen aufschreiben",
+      why: "Plus machen, reinvestieren" },
+  ],
+  later: [
+    { name: "Baulia AI (KI-Produkt)", hours: 4, step: "Q4 prüfen; bis dahin wächst das Wissen im KI-Job", why: "" },
+    { name: "Zweites Startup", hours: 5, step: "Frühestens 2028", why: "" },
+  ],
+  rules: [
+    "<strong>Kein Deal ins Minus.</strong> Aus 50 Cent 1 € machen: nur Plus, dann reinvestieren.",
+    "<strong>Keine Schulden für Deals.</strong> Investiert wird nur aus dem Kapital-Stack.",
+    "<strong>Nur für mich und die Familie arbeiten.</strong> Wer mich einmal verarscht hat, bekommt keine zweite Chance (YouTube-Angebot: abgelehnt).",
+    "<strong>Ein Fokus pro Halbjahr.</strong> 2027 heißt das: Immobilien, nicht Baulia AI.",
+    "<strong>Neue Idee? Ab auf die Später-Liste.</strong> Nicht sofort anfangen.",
+    "<strong>Schlaf wird nicht gekürzt.</strong>",
+  ],
+  routine: [
+    ["Nach Fajr", "25 Min. Islam-Wissen mit Notizen"],
+    ["Pendeln", "Islam- oder Rhetorik-Audio (kostet keine Extra-Zeit)"],
+    ["Elektrojob", "Arbeiten. In Pausen kurz Deal-Anrufe"],
+    ["KI-Job", "Schulungen = Rhetorik-Praxis. 1× pro Woche aufnehmen"],
+    ["Mo / Mi / Fr", "Training ca. 60 Min."],
+    ["Samstag", "2 h Baulia: Deals, Anrufe, Besichtigungen. Danach Gespräche über den Islam"],
+    ["Sonntag", "15 Min. Wochen-Check in der App und Kapitalkonto prüfen"],
+    ["Jeden Abend", "Handy weg, 7,5 h Schlaf"],
+  ],
+};
 
 const MIN_WEEKS_FOR_QUOTE = 2;   // ab so vielen Wochen-Checks zählt die echte Quote
 const QUOTE_WINDOW = 4;          // die letzten N Wochen werden berücksichtigt
@@ -26,14 +111,22 @@ const QUOTE_WINDOW = 4;          // die letzten N Wochen werden berücksichtigt
 function defaultState() {
   const time = {};
   TIME_FIELDS.forEach(f => { time[f.key] = f.def; });
-  return { time, quoteDefault: 60, maxActive: 3, goals: [], checks: {} };
+  return { time, quoteDefault: 60, maxActive: 3, goals: [], checks: {}, milestones: {} };
+}
+
+function mergeState(data) {
+  const base = defaultState();
+  const merged = Object.assign(base, data);
+  merged.time = Object.assign(defaultState().time, data && data.time);
+  merged.milestones = Object.assign({}, data && data.milestones);
+  return merged;
 }
 
 function loadState() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return defaultState();
-    return Object.assign(defaultState(), JSON.parse(raw));
+    return mergeState(JSON.parse(raw));
   } catch (e) {
     return defaultState();
   }
@@ -137,6 +230,7 @@ function fits(hours, ignoreId) {
 
 function render() {
   renderOverview();
+  renderPlan();
   renderTime();
   renderGoals();
   renderCheck();
@@ -192,6 +286,72 @@ function renderOverview() {
     ? steps.map(g => `<li><strong>${esc(g.name)}:</strong> ${esc(g.step)}</li>`).join("")
     : `<li class="empty">Noch keine Schritte. Gib bei jedem Ziel einen winzigen nächsten Schritt an.</li>`;
 }
+
+function renderPlan() {
+  const jobs = weeklyHours(TIME_FIELDS.find(f => f.key === "job1")) + weeklyHours(TIME_FIELDS.find(f => f.key === "job2"));
+  const free = Math.max(0, freeHours());
+  const planH = PLAN.goals.reduce((s, g) => s + g.hours, 0);
+  const real = realisticHours();
+  const fitsPlan = planH <= real;
+  $("#plan-time").innerHTML = `<div class="msg ${fitsPlan ? "ok" : "warn"}" style="margin:0">
+    <p><strong>Ehrliche Rechnung:</strong> ${fmtH(jobs)} Jobs pro Woche. Danach bleiben ${fmtH(free)} frei, realistisch nutzbar sind <strong>${fmtH(real)}</strong>.</p>
+    <p>Der Plan braucht ${fmtH(planH)} pro Woche für die drei Säulen. ${fitsPlan
+      ? "Das passt. Alles, was du mehr schaffst, ist Bonus."
+      : "Das passt gerade nicht. Prüf die Job-Stunden unter „Meine Woche“, oder Baulia läuft erst mal auf Sparflamme."}</p>
+    <p class="label">Die Job-Stunden sind geschätzt. Trag unter „Meine Woche“ deine echten ein, dann rechnet alles neu.</p></div>`;
+
+  $("#plan-pillars").innerHTML = PLAN.pillars.map(p => {
+    const all = p.quarters.flatMap(([q, items]) => items.map((_, i) => `${p.id}-${q}-${i}`));
+    const done = all.filter(id => state.milestones[id]).length;
+    return `<div class="card pillar"><h2>${esc(p.title)} <span class="progress">${done}/${all.length}</span></h2>
+      <p class="hint" style="margin-bottom:4px">${esc(p.goal)}</p>
+      ${p.quarters.map(([q, items]) => `<div class="quarter"><h3>${q} 2027</h3>
+        ${items.map((t, i) => {
+          const id = `${p.id}-${q}-${i}`;
+          const d = !!state.milestones[id];
+          return `<label class="check${d ? " done" : ""}"><input type="checkbox" data-ms="${id}"${d ? " checked" : ""}><span>${esc(t)}</span></label>`;
+        }).join("")}</div>`).join("")}
+    </div>`;
+  }).join("");
+
+  $("#plan-rules").innerHTML = PLAN.rules.map(r => `<li>${r}</li>`).join("");
+  $("#plan-routine").innerHTML = PLAN.routine.map(([t, w]) => `<tr><td>${esc(t)}</td><td>${esc(w)}</td></tr>`).join("");
+  $("#plan-parked").innerHTML = PLAN.later.map(g => `<li><strong>${esc(g.name)}:</strong> ${esc(g.step)}</li>`).join("") +
+    `<li><strong>Weitere Security-Arbeit für mich selbst:</strong> Die machen Bruder und Onkel. Ich koordiniere nur.</li>`;
+}
+
+function applyPlan() {
+  const names = new Set(state.goals.map(g => g.name));
+  const added = [], parked = [];
+  PLAN.goals.forEach(t => {
+    if (names.has(t.name)) return;
+    const g = { id: uid(), ...t, created: new Date().toISOString() };
+    const f = fits(g.hours, g.id);
+    g.status = f.ok ? "active" : "later";
+    state.goals.push(g);
+    (f.ok ? added : parked).push(g.name);
+  });
+  PLAN.later.forEach(t => {
+    if (names.has(t.name)) return;
+    state.goals.push({ id: uid(), ...t, status: "later", created: new Date().toISOString() });
+  });
+  saveState();
+  let html = added.length || parked.length
+    ? `<p><strong>Übernommen.</strong> ${added.length} Ziel(e) aktiv${parked.length ? `, ${parked.length} passen gerade nicht rein und liegen auf der Später-Liste: ${parked.map(esc).join(", ")}` : ""}.</p>`
+    : `<p>Der Plan ist schon in deinen Zielen.</p>`;
+  $("#plan-feedback").innerHTML = `<div class="msg ${parked.length ? "warn" : "ok"}">${html}</div>`;
+  render();
+}
+
+$("#plan-apply").addEventListener("click", applyPlan);
+
+$("#plan").addEventListener("change", e => {
+  const id = e.target.dataset.ms;
+  if (!id) return;
+  if (e.target.checked) state.milestones[id] = true; else delete state.milestones[id];
+  saveState();
+  renderPlan();
+});
 
 function renderTime() {
   const box = $("#time-fields");
@@ -445,7 +605,7 @@ $("#import").addEventListener("change", async e => {
   try {
     const data = JSON.parse(await file.text());
     if (!data || !Array.isArray(data.goals)) throw new Error("Format");
-    state = Object.assign(defaultState(), data);
+    state = mergeState(data);
     saveState();
     render();
     alert("Import erfolgreich.");

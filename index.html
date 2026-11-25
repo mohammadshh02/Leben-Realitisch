@@ -14,6 +14,7 @@
 
   <nav class="tabs" role="tablist">
     <button class="tab active" data-tab="uebersicht">Übersicht</button>
+    <button class="tab" data-tab="plan">Plan 2027</button>
     <button class="tab" data-tab="zeit">Meine Woche</button>
     <button class="tab" data-tab="ziele">Ziele</button>
     <button class="tab" data-tab="check">Wochen-Check</button>
@@ -37,6 +38,40 @@
       <div class="card">
         <h2>Diese Woche: nächste kleine Schritte</h2>
         <ul id="ov-steps" class="steps"></ul>
+      </div>
+    </section>
+
+    <!-- PLAN 2027 -->
+    <section id="plan" class="panel">
+      <div class="card">
+        <h2>2027: 6.600 € netto fest. Nebenbei nur Plus.</h2>
+        <p class="hint" style="margin-bottom:10px">Drei Säulen statt neun Baustellen. Alles andere liegt auf der Später-Liste.</p>
+        <div class="flow">
+          <div class="flow-box"><strong>Festes Einkommen</strong><br>Elektrojob 1.600 € + KI-Job 5.000 € + Provision</div>
+          <div class="flow-box"><strong>Security</strong> (Bruder &amp; Onkel)<br>Cashflow für die Familie</div>
+          <div class="flow-arrow">↓ fester Betrag pro Monat</div>
+          <div class="flow-box accent"><strong>Kapital-Stack</strong> für Immobilien</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-box accent"><strong>Baulia UG: Immo-Deals</strong><br>Sweat Equity, nie ins Minus</div>
+          <div class="flow-arrow">↓ Gewinn</div>
+          <div class="flow-box">Reinvestieren ↺</div>
+        </div>
+        <div id="plan-time" style="margin-top:14px"></div>
+        <button id="plan-apply" class="primary" style="margin-top:14px">Plan in meine Ziele übernehmen</button>
+        <div id="plan-feedback"></div>
+      </div>
+      <div id="plan-pillars"></div>
+      <div class="card">
+        <h2>Meine Regeln</h2>
+        <ul class="steps" id="plan-rules"></ul>
+      </div>
+      <div class="card">
+        <h2>Routine an einem Arbeitstag</h2>
+        <table class="history routine"><tbody id="plan-routine"></tbody></table>
+      </div>
+      <div class="card">
+        <h2>Bewusst geparkt</h2>
+        <ul class="steps" id="plan-parked"></ul>
       </div>
     </section>
 
