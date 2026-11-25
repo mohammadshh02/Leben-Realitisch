@@ -102,6 +102,50 @@ const TRAINING = {
   ],
 };
 
+/* ------------------- Gesundheit: Hyperfokus -------------------- */
+// Vollständige Liste: docs/gesundheit-masterliste.md. Hier nur das, was täglich zählt.
+
+const HEALTH = {
+  daily: [
+    ["morning", "Morgens: Glas Wasser mit Zitrone und Prise Salz, 10 Min. Tageslicht"],
+    ["supps",   "Basis-Supplements: D3 + K2, Kreatin 5 g, Vitamin C, Omega-3 (an Tagen ohne Fisch)"],
+    ["seed",    "1 TL Schwarzkümmelöl mit etwas Honig zum Frühstück"],
+    ["protein", "Protein 170–190 g erreicht (getrackt)"],
+    ["kcal",    "Kalorien im Ziel: 2.100–2.300 kcal"],
+    ["water",   "2,5–3 l Wasser (gern Nelken- oder Ingwerwasser)"],
+    ["gut",     "Darm: 1 TL Flohsamen in viel Wasser + Kefir oder Joghurt"],
+    ["walk",    "10 Min. gehen nach der größten Mahlzeit"],
+    ["coffee",  "Kein Koffein nach 14 Uhr"],
+    ["night",   "Abends: Magnesiumglycinat + Kamille/Melisse, Handy 30 Min. vorher weg, Licht aus 22:00–22:30"],
+  ],
+  weekly: [
+    "<strong>2× Fisch</strong> (Lachs, Sardinen, Makrele) und <strong>1× Rinderleber</strong>, nicht öfter",
+    "<strong>Rosmarinöl</strong> 2–3× einmassieren, <strong>Kopfhautmassage</strong> 5 Min. täglich",
+    "<strong>Fasten Mo/Do:</strong> im Winter nach dem Iftar trainieren. Im Sommer Montags-Training auf Dienstag/Mittwoch schieben",
+    "<strong>Draußen essen:</strong> gegrillt statt frittiert, doppelt Salat, Wasser oder Ayran. Danach 10 Min. gehen",
+    "<strong>Jeden Monat:</strong> Foto vom Haaransatz im gleichen Licht",
+    "<strong>Sonntag beim Wochen-Check:</strong> Gewicht (Wochenschnitt) und Einkaufsliste",
+  ],
+  // Tage seit Start → Phase
+  phases: [
+    { from: 0,  label: "Woche 1–2",  add: "Blutbild, Kalorien-Tracking, Tee-Vorrat, Rituale, Einkauf", check: "Ausgangswerte kennen" },
+    { m: 1,  label: "Monat 1",    add: "Basis: D3 + K2, Magnesium, Kreatin, Vitamin C, Omega-3, OPC", check: "Schlaf und Energie" },
+    { m: 2,  label: "Monat 2",    add: "Tongkat Ali (5 an / 2 aus), Schwarzkümmelöl, Redensyl + Rosmarinöl", check: "Libido, Energie, Haare" },
+    { m: 3,  label: "Monat 3",    add: "Ashwagandha", check: "Stress, Schlaf" },
+    { m: 4,  label: "Monat 4",    add: "Blutbild 2. Berberin nur, wenn HbA1c oder Insulin es nahelegen", check: "Werte vergleichen" },
+    { m: 5,  label: "Monat 5–6",  add: "Shilajit oder Maca (bei Kinderwunsch: CoQ10 + L-Carnitin)", check: "1 neues Mittel pro Monat" },
+    { m: 7,  label: "Monat 7",    add: "Tongkat Ali 4 Wochen Pause, Ashwagandha → Rhodiola oder Ginseng", check: "Keine Gewöhnung" },
+    { m: 8,  label: "Monat 8–9",  add: "Tongkat Ali wieder rein, optional Cordyceps oder Lion's Mane", check: "Gehirn, Ausdauer" },
+    { m: 10, label: "Monat 10–12", add: "Blutbild 3, Haar-Fotos vergleichen", check: "Behalten, was wirkt, Rest streichen" },
+  ],
+  rules: [
+    "Max. 2–3 Extrakte gleichzeitig, nur 1 neues Mittel alle 4–8 Wochen",
+    "Nur geprüfte Ware mit Laborzertifikat, keine „Proprietary Blends“",
+    "Blutbild alle 3–6 Monate. Hormone und hoch dosiertes D3 ärztlich abklären",
+    "Finger weg: He Shou Wu, Detox-Kuren, Yohimbe ohne Arzt, Nelkenöl trinken",
+  ],
+};
+
 /* ------------------------- Plan 2027 --------------------------- */
 
 // Namen älterer Plan-Ziele: werden beim Übernehmen des neuen Plans entfernt (Körper ist jetzt Fundament)
@@ -193,6 +237,7 @@ const PLAN = {
   ],
   routine: [
     ["Nach Fajr", "25 Min. Islam-Wissen (bis 15.12.: Lese-Sprint)"],
+    ["Nach dem Aufstehen", "Zitronenwasser, Supplements, 10 Min. Tageslicht"],
     ["Pendeln & Cardio", "Karteikarten Bau/Immo oder Chase Hughes als Hörbuch"],
     ["Mo–Fr", "KI-Job 40 h. Jede Schulung ist Rede-Training, 1× pro Woche aufnehmen"],
     ["Täglich", "ca. 1 h Elektrojob, dabei Bau-Leute nach ihren Problemen fragen (Baulia AI)"],
@@ -201,7 +246,9 @@ const PLAN = {
     ["Samstag", "Ausschlafen → Gym → 3 h Fokus-Block: 2 h Baulia AI, 1 h Bau & Immo lernen"],
     ["Sonntag", "Ausschlafen → Gym → 15 Min. Wochen-Check → 12–18 Uhr Eltern"],
     ["So-Abend", "Köln: Islam-Gespräche, Netzwerk, Baulia AI pitchen"],
-    ["Jeden Abend", "Handy weg, Schlaf mindestens 7,5 h"],
+    ["14 Uhr", "Koffein-Stopp"],
+    ["Nach dem Essen", "10 Min. gehen, Fenchel- oder Pfefferminztee"],
+    ["Jeden Abend", "Magnesium + Kamille/Melisse, Handy weg, Licht aus 22:00–22:30"],
   ],
 };
 
@@ -214,7 +261,8 @@ function defaultState() {
   const time = {};
   TIME_FIELDS.forEach(f => { time[f.key] = f.def; });
   return { time, timeVersion: TIME_VERSION, quoteDefault: 60, maxActive: 3, goals: [], checks: {},
-    milestones: {}, sprint: JSON.parse(JSON.stringify(SPRINT_DEFAULT)) };
+    milestones: {}, sprint: JSON.parse(JSON.stringify(SPRINT_DEFAULT)),
+    daily: {}, healthStart: "2026-09-26" };
 }
 
 function mergeState(data) {
@@ -226,6 +274,7 @@ function mergeState(data) {
   merged.timeVersion = TIME_VERSION;
   merged.milestones = Object.assign({}, data && data.milestones);
   if (!merged.sprint || !Array.isArray(merged.sprint.books)) merged.sprint = defaultState().sprint;
+  if (!merged.daily || typeof merged.daily !== "object") merged.daily = {};
   return merged;
 }
 
@@ -337,6 +386,7 @@ function fits(hours, ignoreId) {
 
 function render() {
   renderSprint();
+  renderHealthToday();
   renderOverview();
   renderPlan();
   renderTime();
@@ -446,7 +496,72 @@ function renderSprint() {
   $("#sprint-status").innerHTML = `<div class="msg ${cls}">${html}</div>`;
 }
 
+function todayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+function renderHealthToday() {
+  const key = todayKey();
+  const done = state.daily[key] || {};
+  const n = HEALTH.daily.filter(([id]) => done[id]).length;
+  $("#health-progress").textContent = `${n}/${HEALTH.daily.length}`;
+  $("#health-list").innerHTML = HEALTH.daily.map(([id, t]) =>
+    `<label class="check${done[id] ? " done" : ""}"><input type="checkbox" data-health="${id}"${done[id] ? " checked" : ""}><span>${esc(t)}</span></label>`).join("");
+  // Streak: Tage in Folge mit mind. 8/10
+  let streak = 0;
+  for (let i = 0; i < 365; i++) {
+    const d = new Date(); d.setDate(d.getDate() - i);
+    const k = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    const c = Object.values(state.daily[k] || {}).filter(Boolean).length;
+    if (c >= 8) streak++; else if (i > 0) break;
+  }
+  $("#health-streak").textContent = streak
+    ? `${streak} Tag(e) in Folge mit mindestens 8 von 10 Punkten.`
+    : "Ziel: mindestens 8 von 10, nicht perfekt.";
+}
+
+$("#health-list").addEventListener("change", e => {
+  const id = e.target.dataset.health;
+  if (!id) return;
+  const key = todayKey();
+  state.daily[key] = state.daily[key] || {};
+  if (e.target.checked) state.daily[key][id] = true; else delete state.daily[key][id];
+  // nur die letzten 60 Tage behalten
+  const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 60);
+  Object.keys(state.daily).forEach(k => { if (new Date(k) < cutoff) delete state.daily[k]; });
+  saveState();
+  renderHealthToday();
+});
+
+function currentPhase() {
+  const days = Math.floor((new Date() - new Date(state.healthStart + "T00:00:00")) / 86400000);
+  if (isNaN(days) || days < 0) return -1;
+  if (days < 14) return 0;
+  const m = Math.floor((days - 14) / 30.44) + 1;
+  let idx = 0;
+  HEALTH.phases.forEach((p, i) => { if (p.m && m >= p.m) idx = i; });
+  return m > 12 ? HEALTH.phases.length : idx;
+}
+
+function renderHealthPlan() {
+  const cur = currentPhase();
+  if (document.activeElement !== $("#health-start")) $("#health-start").value = state.healthStart;
+  $("#health-phases").innerHTML = HEALTH.phases.map((p, i) =>
+    `<tr class="${i === cur ? "current" : ""}"><td>${esc(p.label)}${i === cur ? " ← jetzt" : ""}</td><td>${esc(p.add)}</td><td>${esc(p.check)}</td></tr>`).join("");
+  $("#health-weekly").innerHTML = HEALTH.weekly.map(w => `<li>${w}</li>`).join("");
+  $("#health-rules").innerHTML = HEALTH.rules.map(r => `<li>${esc(r)}</li>`).join("");
+}
+
+$("#health-start").addEventListener("change", e => {
+  if (!e.target.value) return;
+  state.healthStart = e.target.value;
+  saveState();
+  renderHealthPlan();
+});
+
 function renderPlan() {
+  renderHealthPlan();
   const jobs = weeklyHours(TIME_FIELDS.find(f => f.key === "job1")) + weeklyHours(TIME_FIELDS.find(f => f.key === "job2"));
   const free = Math.max(0, freeHours());
   const planH = PLAN.goals.reduce((s, g) => s + g.hours, 0);

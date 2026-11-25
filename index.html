@@ -29,6 +29,11 @@
         <div id="sprint-books"></div>
         <div id="sprint-status"></div>
       </div>
+      <div class="card">
+        <h2>Heute: Gesundheit-Hyperfokus <span class="pill" id="health-progress"></span></h2>
+        <p class="hint" id="health-streak"></p>
+        <div id="health-list"></div>
+      </div>
       <div class="card hero">
         <div class="big" id="ov-realistic">–</div>
         <div class="label">Stunden pro Woche, die du <strong>realistisch</strong> für Ziele hast</div>
@@ -112,6 +117,16 @@
         <div id="plan-training"></div>
         <h2 style="margin-top:18px">Ernährung &amp; Zahlen</h2>
         <ul class="steps" id="plan-nutrition"></ul>
+      </div>
+      <div class="card">
+        <h2>Gesundheit: Jahresplan Supplements</h2>
+        <p class="hint">Täglich abhaken kannst du in der Übersicht. Hier steht, was wann dazukommt. Die komplette Liste liegt in <code>docs/gesundheit-masterliste.md</code>.</p>
+        <label class="field"><span>Start des Plans</span><input type="date" id="health-start"></label>
+        <table class="history routine phases"><thead><tr><th>Phase</th><th>Neu dazu</th><th>Check</th></tr></thead><tbody id="health-phases"></tbody></table>
+        <h2 style="margin-top:18px">Jede Woche</h2>
+        <ul class="steps" id="health-weekly"></ul>
+        <h2 style="margin-top:18px">Sicherheitsregeln</h2>
+        <ul class="steps" id="health-rules"></ul>
       </div>
       <div class="card">
         <h2>Meine Regeln</h2>
