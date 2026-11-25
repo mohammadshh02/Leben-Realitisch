@@ -156,3 +156,5 @@ input[type=date] { font: inherit; color: var(--text); background: var(--bg); bor
 .phases tr.current td { background: var(--accent-soft); font-weight: 600; }
 .phases td { font-size: 0.88rem; }
 code { font-size: 0.85em; background: var(--bg); padding: 1px 5px; border-radius: 5px; overflow-wrap: anywhere; }
+.routine td, .routine th { overflow-wrap: anywhere; }
+.phases td:first-child { white-space: normal; min-width: 44px; }

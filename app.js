@@ -94,11 +94,46 @@ const TRAINING = {
     "<strong>Ende Dezember:</strong> ca. 86–87 kg. Mehr wäre vor allem Wasser und Muskelverlust",
     "<strong>Ziel:</strong> ca. 79–80 kg bei ca. 12 % (Sixpack sichtbar), machbar bis März 2027",
     "<strong>Tempo:</strong> 0,7–0,9 kg pro Woche. Wenn 2 Wochen lang nichts runtergeht, 150 kcal weniger",
-    "<strong>Kalorien:</strong> ca. 2.100–2.300 kcal pro Tag",
-    "<strong>Protein:</strong> 170–190 g pro Tag. Im Defizit ist das der Muskelschutz Nr. 1",
+    "<strong>Kalorien:</strong> Mo–Fr 2.000–2.150 kcal (Ernährungsplan unten), am Wochenende mit Rahmen",
+    "<strong>Protein:</strong> 190–210 g pro Tag. Im Defizit ist das der Muskelschutz Nr. 1",
     "<strong>Steigerung:</strong> Wenn du in allen Sätzen das obere Ende der Wiederholungen schaffst, nächstes Mal +2,5 kg. Bei Grundübungen 1–2 Wiederholungen im Tank lassen",
     "<strong>Effizienz:</strong> Cardio direkt nach dem Training (kein Extra-Weg) und als Lernzeit mit Hörbuch zu Bau/Immo oder Chase Hughes",
     "<strong>Ehrlich:</strong> Gezielt an Beinen, Po oder Unterbauch abnehmen geht nicht. Das Fett dort geht als Letztes, aber es geht, wenn das Gesamt-Körperfett sinkt",
+  ],
+};
+
+/* --------------------- Ernährungsplan Mo–Fr --------------------- */
+// Quelle: docs/ernaehrungsplan.pdf (Stand 19.11.2026). Training auf 17:45 vorgezogen (Schlaf).
+
+const NUTRITION = {
+  gymDay: [
+    ["17:00", "Shake, 1 Scoop + 5 g Kreatin (Fasten brechen)", "120 kcal · 24 g"],
+    ["17:45", "Gym + 30 Min. Cardio", ""],
+    ["19:30", "Mahlzeit 1 (rotes Fleisch) + Nachtisch: 200 g Skyr, Beeren, 2 Datteln", "860–960 kcal · 82–92 g"],
+    ["20:45", "Mahlzeit 2 (Hähnchen, Lachs, Garnelen) + Obst, 2 Datteln. Dazu Omega-3, D3 + K2", "750–900 kcal · 56–86 g"],
+    ["21:15", "Shake, 1 Scoop. Danach nichts mehr", "120 kcal · 24 g"],
+  ],
+  restDay: [
+    ["17:00", "Shake, 1 Scoop + 5 g Kreatin", "120 kcal · 24 g"],
+    ["18:00", "Mahlzeit 1 + Nachtisch 1", "860–960 kcal"],
+    ["19:30", "Mahlzeit 2 + Nachtisch 2 + Omega-3, D3 + K2", "750–900 kcal"],
+    ["20:15", "Shake, 1 Scoop", "120 kcal · 24 g"],
+  ],
+  menu: [
+    ["Mo", "Hackpfanne: 300 g Rinderhack, 250 g Ofenkartoffeln, Paprika, Zwiebeln", "Hähnchen-Curry: 250 g Hähnchen, 60 g Reis, Gemüse, Light-Kokosmilch"],
+    ["Di", "Steak: 250 g Hüfte, 250 g Süßkartoffel, grüne Bohnen", "Lachs: 200 g, 150 g Süßkartoffel, Brokkoli"],
+    ["Mi", "Sauerteigpizza: 150 g Teig, 200 g Rinderhack, Light-Mozzarella", "Hähnchen-Pfanne: 250 g Hähnchen, 3 Eier, Gemüse"],
+    ["Do", "Chili con Carne: 300 g Rinderhack, Kidneybohnen, Tomaten, 50 g Reis", "Garnelen-Pfanne: 200 g Garnelen, 3 Eier, Zucchini, Spinat"],
+    ["Fr", "Burger: 250 g Hack-Patties, 2 Scheiben Sauerteigbrot, Salat", "Lachs-Bowl: 200 g Lachs, 3 Eier, Salat, Gemüse"],
+  ],
+  rules: [
+    "<strong>Mo–Fr:</strong> 18:6, Essen nur 17–21:30. Davor Wasser, Tee, schwarzer Kaffee (bis 14 Uhr)",
+    "<strong>Ziel:</strong> 2.000–2.150 kcal und 190–210 g Protein. Hack immer mager (5 %)",
+    "<strong>Obst und Datteln</strong> immer als Nachtisch, nicht zum Fastenbrechen",
+    "<strong>Hunger oder Kraft fällt ab:</strong> 2 Datteln oder 20 g Reis mehr",
+    "<strong>Wochenende:</strong> Fastenfenster halten, eine große Mahlzeit draußen, Protein zuerst, bei Getränken und Desserts sparen. Das entscheidet über März oder Mai",
+    "<strong>Sunnah-Fasten Mo/Do:</strong> im Winter fast identisch mit 18:6 (Iftar ca. 16:30). Im Sommer ist Iftar erst gegen 21:30, dann Mo-Training auf Mi verschieben",
+    "<strong>Einkauf:</strong> ca. 79 € pro Woche, ca. 360 € pro Monat mit Supplements. Hack einfrieren, Lachs TK, Proteinpulver im 2–3-kg-Beutel → ca. 310 €",
   ],
 };
 
@@ -108,12 +143,12 @@ const TRAINING = {
 const HEALTH = {
   daily: [
     ["morning", "Morgens: Glas Wasser mit Zitrone und Prise Salz, 10 Min. Tageslicht"],
-    ["supps",   "Basis-Supplements: D3 + K2, Kreatin 5 g, Vitamin C, Omega-3 (an Tagen ohne Fisch)"],
-    ["seed",    "1 TL Schwarzkümmelöl mit etwas Honig zum Frühstück"],
-    ["protein", "Protein 170–190 g erreicht (getrackt)"],
-    ["kcal",    "Kalorien im Ziel: 2.100–2.300 kcal"],
+    ["supps",   "Supplements: Kreatin 5 g in den ersten Shake. D3 + K2, Omega-3, Vitamin C zu Mahlzeit 2"],
+    ["fast",    "Fastenfenster gehalten: Essen nur 17–21:30 (Mo–Fr)"],
+    ["protein", "Protein 190–210 g erreicht (getrackt)"],
+    ["kcal",    "Kalorien im Ziel: 2.000–2.150 kcal (Wochenende: Rahmen halten)"],
     ["water",   "2,5–3 l Wasser (gern Nelken- oder Ingwerwasser)"],
-    ["gut",     "Darm: 1 TL Flohsamen in viel Wasser + Kefir oder Joghurt"],
+    ["gut",     "Im Essensfenster: 1 TL Schwarzkümmelöl, 1 TL Flohsamen in viel Wasser, Skyr oder Kefir"],
     ["walk",    "10 Min. gehen nach der größten Mahlzeit"],
     ["coffee",  "Kein Koffein nach 14 Uhr"],
     ["night",   "Abends: Magnesiumglycinat + Kamille/Melisse, Handy 30 Min. vorher weg, Licht aus 22:00–22:30"],
@@ -204,7 +239,7 @@ const PLAN = {
       goal: "91 kg / ca. 23 % → ca. 80 kg / ca. 12 % bis März. Obere Brust, runde Schultern, breiter Lat, Arme, Sixpack. Beine nur gesund halten.",
       quarters: [
         ["Q1", ["5er-Split steht: Mo, Di, Do, Sa, So (Trainingsplan unten)",
-                "ca. 2.100–2.300 kcal, 170–190 g Protein, 8.000–10.000 Schritte pro Tag",
+                "Ernährungsplan Mo–Fr: 18:6, 2.000–2.150 kcal, 190–210 g Protein, 8.000–10.000 Schritte",
                 "Startfoto, Gewicht und Bauchumfang festhalten, dann alle 2 Wochen messen",
                 "Ende Dezember ca. 86–87 kg, Ende März ca. 80 kg bei ca. 12 %"]],
         ["Q2", ["12 % halten, Sixpack sichtbar",
@@ -237,18 +272,19 @@ const PLAN = {
   ],
   routine: [
     ["Nach Fajr", "25 Min. Islam-Wissen (bis 15.12.: Lese-Sprint)"],
-    ["Nach dem Aufstehen", "Zitronenwasser, Supplements, 10 Min. Tageslicht"],
+    ["Nach dem Aufstehen", "Zitronenwasser mit Prise Salz, 10 Min. Tageslicht (kein Frühstück: 18:6)"],
     ["Pendeln & Cardio", "Karteikarten Bau/Immo oder Chase Hughes als Hörbuch"],
     ["Mo–Fr", "KI-Job 40 h. Jede Schulung ist Rede-Training, 1× pro Woche aufnehmen"],
     ["Täglich", "ca. 1 h Elektrojob, dabei Bau-Leute nach ihren Problemen fragen (Baulia AI)"],
-    ["Mo / Di / Do", "Gym nach der Arbeit, danach 30 Min. Cardio mit Hörbuch"],
+    ["17:00", "Shake (Fasten brechen)"],
+    ["Mo / Di / Do", "17:45–19:15 Gym + 30 Min. Cardio mit Hörbuch, danach Mahlzeit 1 und 2"],
     ["Mi / Fr", "Ruhetag: 45 Min. spazieren, gern beim Telefonieren"],
     ["Samstag", "Ausschlafen → Gym → 3 h Fokus-Block: 2 h Baulia AI, 1 h Bau & Immo lernen"],
     ["Sonntag", "Ausschlafen → Gym → 15 Min. Wochen-Check → 12–18 Uhr Eltern"],
     ["So-Abend", "Köln: Islam-Gespräche, Netzwerk, Baulia AI pitchen"],
     ["14 Uhr", "Koffein-Stopp"],
     ["Nach dem Essen", "10 Min. gehen, Fenchel- oder Pfefferminztee"],
-    ["Jeden Abend", "Magnesium + Kamille/Melisse, Handy weg, Licht aus 22:00–22:30"],
+    ["Jeden Abend", "21:15 letzter Shake, Magnesium + Kamille/Melisse, Handy weg, Licht aus 22:15"],
   ],
 };
 
@@ -592,6 +628,11 @@ function renderPlan() {
     <h3>${esc(d.name)}</h3><div class="when">${esc(d.day)}</div>
     <table>${d.ex.map(([n, r]) => `<tr><td>${esc(n)}</td><td>${esc(r)}</td></tr>`).join("")}</table></div>`).join("");
   $("#plan-nutrition").innerHTML = TRAINING.nutrition.map(n => `<li>${n}</li>`).join("");
+  const rows = list => list.map(([t, w, k]) => `<tr><td>${esc(t)}</td><td>${esc(w)}</td><td>${esc(k)}</td></tr>`).join("");
+  $("#nut-gym").innerHTML = rows(NUTRITION.gymDay);
+  $("#nut-rest").innerHTML = rows(NUTRITION.restDay);
+  $("#nut-menu").innerHTML = rows(NUTRITION.menu);
+  $("#nut-rules").innerHTML = NUTRITION.rules.map(r => `<li>${r}</li>`).join("");
   $("#plan-rules").innerHTML = PLAN.rules.map(r => `<li>${r}</li>`).join("");
   $("#plan-routine").innerHTML = PLAN.routine.map(([t, w]) => `<tr><td>${esc(t)}</td><td>${esc(w)}</td></tr>`).join("");
   $("#plan-parked").innerHTML = PLAN.later.map(g => `<li><strong>${esc(g.name)}:</strong> ${esc(g.step)}</li>`).join("") +
