@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leben Realistisch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Leben Realistisch</h1>
+    <p class="sub">Weniger vornehmen. Mehr schaffen.</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="uebersicht">Übersicht</button>
+    <button class="tab" data-tab="zeit">Meine Woche</button>
+    <button class="tab" data-tab="ziele">Ziele</button>
+    <button class="tab" data-tab="check">Wochen-Check</button>
+  </nav>
+
+  <main>
+    <!-- ÜBERSICHT -->
+    <section id="uebersicht" class="panel active">
+      <div class="card hero">
+        <div class="big" id="ov-realistic">–</div>
+        <div class="label">Stunden pro Woche, die du <strong>realistisch</strong> für Ziele hast</div>
+        <div class="bar"><div class="fill" id="ov-bar"></div></div>
+        <div class="bar-label" id="ov-bar-label"></div>
+      </div>
+      <div class="grid3">
+        <div class="card stat"><div class="num" id="ov-free">–</div><div class="label">freie Stunden (Theorie)</div></div>
+        <div class="card stat"><div class="num" id="ov-quote">–</div><div class="label">deine Umsetzungsquote</div></div>
+        <div class="card stat"><div class="num" id="ov-active">–</div><div class="label">aktive Ziele</div></div>
+      </div>
+      <div class="card" id="ov-message"></div>
+      <div class="card">
+        <h2>Diese Woche: nächste kleine Schritte</h2>
+        <ul id="ov-steps" class="steps"></ul>
+      </div>
+    </section>
+
+    <!-- ZEIT -->
+    <section id="zeit" class="panel">
+      <div class="card">
+        <h2>Wohin geht deine Zeit wirklich?</h2>
+        <p class="hint">Sei ehrlich, nicht optimistisch. Rechne lieber etwas mehr, als du denkst.</p>
+        <div id="time-fields" class="fields"></div>
+        <div class="sum-row">
+          <span>Bleibt übrig:</span> <strong id="time-free">–</strong>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Umsetzungsquote</h2>
+        <p class="hint">Wie viel von dem, was du dir vornimmst, schaffst du wirklich? Am Anfang gilt 60 %.
+          Sobald du Wochen-Checks machst, wird die Quote aus deinen echten Daten berechnet.</p>
+        <label class="field">
+          <span>Startwert (%)</span>
+          <input type="number" id="quote-default" min="10" max="100" step="5">
+        </label>
+        <label class="field">
+          <span>Max. aktive Ziele gleichzeitig</span>
+          <input type="number" id="max-active" min="1" max="10" step="1">
+        </label>
+      </div>
+    </section>
+
+    <!-- ZIELE -->
+    <section id="ziele" class="panel">
+      <div class="card">
+        <h2>Neues Ziel</h2>
+        <form id="goal-form">
+          <label class="field"><span>Was willst du?</span>
+            <input type="text" id="g-name" placeholder="z. B. 2x pro Woche Gym" required></label>
+          <label class="field"><span>Stunden pro Woche (ehrlich geschätzt)</span>
+            <input type="number" id="g-hours" min="0.5" step="0.5" value="2" required></label>
+          <label class="field"><span>Kleinster nächster Schritt</span>
+            <input type="text" id="g-step" placeholder="z. B. Sporttasche heute Abend packen"></label>
+          <label class="field"><span>Warum ist dir das wichtig?</span>
+            <input type="text" id="g-why" placeholder="optional"></label>
+          <button type="submit" class="primary">Ziel prüfen &amp; hinzufügen</button>
+        </form>
+        <div id="goal-feedback"></div>
+      </div>
+
+      <div class="card">
+        <h2>Aktiv <span class="pill" id="active-count"></span></h2>
+        <ul id="active-list" class="goal-list"></ul>
+      </div>
+
+      <div class="card">
+        <h2>Später-Liste</h2>
+        <p class="hint">Nicht gestrichen, nur geparkt. Hier liegt alles, was gerade nicht reinpasst.</p>
+        <ul id="later-list" class="goal-list"></ul>
+      </div>
+
+      <div class="card">
+        <h2>Geschafft 🎉</h2>
+        <ul id="done-list" class="goal-list"></ul>
+      </div>
+    </section>
+
+    <!-- CHECK -->
+    <section id="check" class="panel">
+      <div class="card">
+        <h2>Wochen-Check: <span id="check-week"></span></h2>
+        <p class="hint">Trag ein, wie viele Stunden du <strong>wirklich</strong> in jedes Ziel gesteckt hast. Kein Urteil, nur Daten.</p>
+        <div class="week-nav">
+          <button id="week-prev" class="ghost">‹ Vorwoche</button>
+          <button id="week-next" class="ghost">Nächste ›</button>
+        </div>
+        <form id="check-form"></form>
+        <div id="check-result"></div>
+      </div>
+      <div class="card">
+        <h2>Verlauf</h2>
+        <table class="history">
+          <thead><tr><th>Woche</th><th>geplant</th><th>gemacht</th><th>Quote</th></tr></thead>
+          <tbody id="history-body"></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Daten sichern</h2>
+        <p class="hint">Deine Daten liegen nur in diesem Browser. Exportiere sie ab und zu.</p>
+        <div class="row">
+          <button id="export" class="ghost">Exportieren</button>
+          <label class="ghost button-like">Importieren<input type="file" id="import" accept="application/json" hidden></label>
+          <button id="reset" class="danger">Alles löschen</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
