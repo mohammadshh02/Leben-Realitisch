@@ -16,13 +16,17 @@ const TIME_FIELDS = [
     note: "ca. 1 h pro Tag" },
   { key: "commute",  label: "Pendeln / Fahrten",                      unit: "week", def: 7 },
   { key: "security", label: "Security koordinieren (Bruder & Onkel)", unit: "week", def: 1 },
+  { key: "gym",      label: "Gym (Fundament)",                        unit: "week", def: 5,
+    note: "4× ca. 70 Min. inkl. Weg" },
+  { key: "islam",    label: "Islam-Wissen nach Fajr (Fundament)",     unit: "week", def: 3,
+    note: "ca. 25 Min. täglich" },
   { key: "chores",   label: "Essen, Haushalt, Körperpflege",          unit: "day",  def: 2 },
   { key: "fixed",    label: "Feste Termine",                          unit: "week", def: 9,
     note: "inkl. Sonntag 12–18 Uhr bei den Eltern" },
   { key: "rest",     label: "Erholung, Freunde, Handy",               unit: "day",  def: 2,
     note: "inkl. Sonntagabend in Köln. Kein Luxus." },
 ];
-const TIME_VERSION = 2; // bei Änderung der Standardwerte hochzählen
+const TIME_VERSION = 3; // bei Änderung der Standardwerte hochzählen
 
 /* --------------------- Lese-Sprint (20 Tage) -------------------- */
 
@@ -85,40 +89,59 @@ const TRAINING = {
 
 /* ------------------------- Plan 2027 --------------------------- */
 
+// Namen älterer Plan-Ziele: werden beim Übernehmen des neuen Plans entfernt (Körper ist jetzt Fundament)
+const OLD_PLAN_GOALS = ["Körper: 3× Training", "Körper: 4× Training (Ästhetik-Split)",
+  "Redner: Islam-Wissen + 1 Aufnahme/Woche", "Baulia: erster Immo-Deal", "Zweites Startup"];
+
 const PLAN = {
   pillars: [
     {
-      id: "geld", title: "1 · Geld & Baulia UG",
-      goal: "6.600 € netto fest. Nebenbei nur Deals, die Plus machen.",
+      id: "ai", title: "Fokus 1 · Baulia AI (Hauptfokus)",
+      goal: "KI-Produkt für Bau und Immobilien in Deutschland. Hardcore vermarkten.",
       quarters: [
-        ["Q1", ["KI-Job startet (Feb): reinkommen, liefern, Provision verstehen",
-                "6.600 € netto laufen stabil, fester Monatsbetrag aufs Kapitalkonto",
-                "Security: Bruder & Onkel arbeiten, fester Anteil geht in den Kapital-Stack",
-                "Baulia UG mit Bruder sauber aufgesetzt (Konto, Aufgabenteilung, Regeln)"]],
-        ["Q2", ["Ersten Immo-Deal mit Sweat Equity abschließen (Vermittlung / Tippgeber / Grundstück)",
-                "Deal-Checkliste: Wie viel Plus? Was ist das Worst Case?"]],
-        ["Q3", ["Zweiter Deal",
-                "Ablauf dokumentieren: Woher kommen Deals, was hat Geld gebracht?"]],
-        ["Q4", ["Jahresbilanz: Kapital-Stack, Gewinne, was reinvestiert wurde",
-                "Entscheidung: Baulia AI 2028 starten, ja oder nein?"]],
+        ["Q1", ["Arbeitsvertrag KI-Job prüfen: Wettbewerbsverbot oder Nebentätigkeit? (Massoud macht auch KI)",
+                "Produkt in einem Satz: Welches Problem, für wen, zu welchem Preis?",
+                "10 Gespräche mit Bau- und Elektrobetrieben. Die Elektrofirma ist dein erster Testkunde"]],
+        ["Q2", ["3 Pilotkunden nutzen Baulia AI",
+                "Jede Woche 1 Post oder Kurzvideo. Vermarktung ist gleichzeitig Redner-Training"]],
+        ["Q3", ["10 zahlende Kunden",
+                "Angebot und Preis anhand von Kunden-Feedback schärfen"]],
+        ["Q4", ["Bilanz: Kunden, monatlicher Umsatz, was hat verkauft?",
+                "Plan für 2028: skalieren"]],
       ],
     },
     {
-      id: "redner", title: "2 · Redner: Islam, Rhetorik, Verkauf",
-      goal: "Ein Skill, viele Bühnen: Jede Schulung, jedes Verkaufsgespräch und jedes Gespräch über den Islam ist Training.",
+      id: "immo", title: "Fokus 2 · Bau & Immobilien Deutschland",
+      goal: "Alles kennen, alle Auflagen, nur Deutschland. Wissen für Baulia AI und Deals über die Baulia UG.",
       quarters: [
-        ["Q1", ["Täglich nach Fajr 25 Min. Islam-Wissen mit Notizen",
-                "Jede Woche 1 Schulung oder Rede mit dem Handy aufnehmen und anschauen"]],
-        ["Q2", ["Rhetorik-Grundlagen: Stimme, Pausen, Storytelling (1 Buch oder Kurs)",
+        ["Q1", ["Lernblock 1: Planungsrecht (siehe Lernplan unten)",
+                "Lernblock 2: Kauf, Notar, Steuern",
+                "Baulia UG mit Bruder sauber aufgesetzt, Kapital-Stack aus Security läuft"]],
+        ["Q2", ["Lernblock 3: Sanierung, Energie, Förderung",
+                "Lernblock 4: Vermittlung & Deals (§34c klären!)",
+                "Erster Deal mit Sweat Equity"]],
+        ["Q3", ["Lernblock 5: Miete, WEG, Finanzierung, Rendite",
+                "Zweiter Deal"]],
+        ["Q4", ["Jahresbilanz Kapital-Stack und Deals",
+                "Großhandel Afghanistan–Europa prüfen, aber nur, wenn Fokus 1 läuft"]],
+      ],
+    },
+    {
+      id: "rede", title: "Fokus 3 · Confidence & Rede",
+      goal: "Ruhig, vertrauenswürdig, charismatisch. Bühnen: KI-Schulungen, Baulia-Pitches, Islam-Gespräche in Köln.",
+      quarters: [
+        ["Q1", ["Jede Woche 1 Schulung oder Rede aufnehmen und mit der Checkliste unten auswerten",
+                "Chase Hughes: 1 Buch durcharbeiten, jede Woche 1 Prinzip bewusst anwenden"]],
+        ["Q2", ["Stimme: Tempo, Pausen, Tiefe. Dazu Storytelling",
                 "Erste kleine Gesprächsrunde über den Islam"]],
         ["Q3", ["Erster eigener Vortrag vor Publikum",
-                "Verkauf: eigenes Gesprächsskript für Schulungen und Immo-Deals"]],
+                "Verkaufs-Pitch für Baulia AI sitzt (unter 2 Minuten)"]],
         ["Q4", ["1 Vortrag pro Monat",
-                "Schulungen laufen sicher, ruhig und charismatisch"]],
+                "Schulungen laufen sicher, ruhig und mit Autorität"]],
       ],
     },
     {
-      id: "koerper", title: "3 · Körper & Ausstrahlung",
+      id: "koerper", title: "Fundament · Körper & Ausstrahlung",
       goal: "90 kg / ca. 22 % → ca. 80 kg / ca. 12 %. Obere Brust, runde Schultern, breiter Lat, Arme, Sixpack. Beine nur gesund halten.",
       quarters: [
         ["Q1", ["4er-Split steht: Di, Do, Sa, So (Trainingsplan unten)",
@@ -133,34 +156,35 @@ const PLAN = {
     },
   ],
   goals: [
-    { name: "Körper: 4× Training (Ästhetik-Split)", hours: 5, step: "Di nach der Arbeit: Tag A, obere Brust & Schultern",
-      why: "Präsenz, Energie, Ausstrahlung" },
-    { name: "Redner: Islam-Wissen + 1 Aufnahme/Woche", hours: 3, step: "Nach Fajr 25 Min. lesen; So-Abend in Köln Gespräche führen",
-      why: "Islam-Vorträge, Charisma, Verkauf" },
-    { name: "Baulia: erster Immo-Deal", hours: 2, step: "10 mögliche Deal-Quellen aufschreiben",
-      why: "Plus machen, reinvestieren" },
+    { name: "Fokus 1: Baulia AI vermarkten", hours: 3, step: "Problem, Kunde und Preis in einem Satz aufschreiben",
+      why: "Hauptfokus Deutschland" },
+    { name: "Fokus 2: Bau & Immo Deutschland", hours: 2, step: "Lernblock 1: §§ 30, 34, 35 BauGB verstehen",
+      why: "Wissen für Baulia AI und Deals" },
+    { name: "Fokus 3: Confidence & Rede", hours: 2, step: "Diese Woche 1 Schulung aufnehmen und auswerten",
+      why: "Charisma, Verkauf, Islam-Vorträge" },
   ],
   later: [
-    { name: "Baulia AI (KI-Produkt)", hours: 4, step: "Q4 prüfen; bis dahin wächst das Wissen im KI-Job", why: "" },
-    { name: "Zweites Startup", hours: 5, step: "Frühestens 2028", why: "" },
+    { name: "Großhandel Afghanistan – Deutschland – Europa", hours: 5,
+      step: "Frühestens Q4 2027 prüfen, nur wenn Baulia AI läuft. 2027 heißt es: nur Deutschland", why: "" },
   ],
   rules: [
-    "<strong>Kein Deal ins Minus.</strong> Aus 50 Cent 1 € machen: nur Plus, dann reinvestieren.",
-    "<strong>Keine Schulden für Deals.</strong> Investiert wird nur aus dem Kapital-Stack.",
-    "<strong>Nur für mich und die Familie arbeiten.</strong> Wer mich einmal verarscht hat, bekommt keine zweite Chance (YouTube-Angebot: abgelehnt).",
-    "<strong>Ein Fokus pro Halbjahr.</strong> 2027 heißt das: Immobilien, nicht Baulia AI.",
-    "<strong>Neue Idee? Ab auf die Später-Liste.</strong> Nicht sofort anfangen.",
+    "<strong>Immer nur 3 Foki.</strong> Mehr schafft niemand. Alles andere kommt auf die Später-Liste.",
+    "<strong>Nur Deutschland.</strong> 2027 ist der Kopf nur hier.",
+    "<strong>Baulia AI ist Hauptfokus.</strong> Bei Zeitkonflikt gewinnt Baulia AI.",
+    "<strong>Kein Deal ins Minus, keine Schulden.</strong> Aus 50 Cent 1 € machen, reinvestieren.",
+    "<strong>Nur für mich und die Familie arbeiten.</strong> Wer mich einmal verarscht hat, bekommt keine zweite Chance.",
+    "<strong>Lernen nur mit Anwendung.</strong> Kein Wissen auf Vorrat (siehe Meta-Learning).",
     "<strong>Schlaf wird nicht gekürzt.</strong>",
   ],
   routine: [
     ["Nach Fajr", "25 Min. Islam-Wissen (bis 15.12.: Lese-Sprint)"],
-    ["Mo–Fr", "KI-Job / Standortleiter, 40 h. Schulungen = Rhetorik-Praxis, 1× pro Woche aufnehmen"],
-    ["Täglich", "ca. 1 h Elektrojob, flexibel, z. B. Pause oder Abend"],
-    ["Täglich", "8.000–10.000 Schritte (Telefonate im Gehen)"],
-    ["Di / Do", "Gym nach der Arbeit (Tag A / B)"],
-    ["Samstag", "Ausschlafen → Gym (Tag C) → 2 h Baulia: Deals, Anrufe, Besichtigungen"],
-    ["Sonntag", "Ausschlafen → Gym (Tag D) → 15 Min. Wochen-Check → 12–18 Uhr Eltern"],
-    ["So-Abend", "Köln: Leute treffen = Gespräche über den Islam, Netzwerk, Deals"],
+    ["Pendeln", "Karteikarten Bau/Immo oder Chase Hughes als Hörbuch"],
+    ["Mo–Fr", "KI-Job 40 h. Jede Schulung ist Rede-Training, 1× pro Woche aufnehmen"],
+    ["Täglich", "ca. 1 h Elektrojob, dabei Bau-Leute nach ihren Problemen fragen (Baulia AI)"],
+    ["Di / Do", "Gym nach der Arbeit"],
+    ["Samstag", "Ausschlafen → Gym → 3 h Fokus-Block: 2 h Baulia AI, 1 h Bau & Immo lernen"],
+    ["Sonntag", "Ausschlafen → Gym → 15 Min. Wochen-Check → 12–18 Uhr Eltern"],
+    ["So-Abend", "Köln: Islam-Gespräche, Netzwerk, Baulia AI pitchen"],
     ["Jeden Abend", "Handy weg, Schlaf mindestens 7,5 h"],
   ],
 };
@@ -181,7 +205,7 @@ function mergeState(data) {
   const base = defaultState();
   const merged = Object.assign(base, data);
   // Alte Zeitwerte verwerfen, wenn sich die Standardwerte geändert haben
-  const oldTime = data && (data.timeVersion || 1) >= TIME_VERSION ? data.time : {};
+  const oldTime = data && (data.timeVersion || 1) >= 2 ? data.time : {}; // neue Felder bekommen Standardwerte
   merged.time = Object.assign(defaultState().time, oldTime);
   merged.timeVersion = TIME_VERSION;
   merged.milestones = Object.assign({}, data && data.milestones);
@@ -401,7 +425,7 @@ function renderSprint() {
     const min = Math.ceil(perDay * 1.5); // ca. 1,5 Min. pro Seite
     cls = min > 60 ? "warn" : "ok";
     html = `<p><strong>${perDay} Seiten pro Tag</strong> (ca. ${min} Min.), noch ${daysLeft} Tage, ${left} Seiten offen.</p>
-      <p class="label">Tipp: 25 Min. nach Fajr und 20 Min. abends. Bis zum 15.12. pausiert dafür Baulia.${min > 60 ? " Das ist viel: Nimm für eins der Bücher das Hörbuch beim Fahren." : ""}</p>`;
+      <p class="label">Tipp: 25 Min. nach Fajr und 20 Min. abends. Bis zum 15.12. läuft Baulia dafür auf Sparflamme.${min > 60 ? " Das ist viel: Nimm für eins der Bücher das Hörbuch beim Fahren." : ""}</p>`;
   }
   $("#sprint-status").innerHTML = `<div class="msg ${cls}">${html}</div>`;
 }
@@ -414,9 +438,9 @@ function renderPlan() {
   const fitsPlan = planH <= real;
   $("#plan-time").innerHTML = `<div class="msg ${fitsPlan ? "ok" : "warn"}" style="margin:0">
     <p><strong>Ehrliche Rechnung:</strong> ${fmtH(jobs)} Jobs pro Woche. Danach bleiben ${fmtH(free)} frei, realistisch nutzbar sind <strong>${fmtH(real)}</strong>.</p>
-    <p>Der Plan braucht ${fmtH(planH)} pro Woche für die drei Säulen. ${fitsPlan
+    <p>Gym und Islam laufen als feste Routinen schon mit. Die 3 Foki brauchen ${fmtH(planH)} pro Woche. ${fitsPlan
       ? "Das passt. Alles, was du mehr schaffst, ist Bonus."
-      : "Das passt gerade nicht. Prüf die Job-Stunden unter „Meine Woche“, oder Baulia läuft erst mal auf Sparflamme."}</p>
+      : "Das passt gerade nicht. Schau unter „Meine Woche“, wo Zeit frei wird, oder kürz Fokus 2."}</p>
     <p class="label">Ändert sich etwas an deiner Woche, trag es unter „Meine Woche“ ein. Dann rechnet alles neu.</p></div>`;
 
   $("#plan-pillars").innerHTML = PLAN.pillars.map(p => {
@@ -440,10 +464,11 @@ function renderPlan() {
   $("#plan-rules").innerHTML = PLAN.rules.map(r => `<li>${r}</li>`).join("");
   $("#plan-routine").innerHTML = PLAN.routine.map(([t, w]) => `<tr><td>${esc(t)}</td><td>${esc(w)}</td></tr>`).join("");
   $("#plan-parked").innerHTML = PLAN.later.map(g => `<li><strong>${esc(g.name)}:</strong> ${esc(g.step)}</li>`).join("") +
-    `<li><strong>Weitere Security-Arbeit für mich selbst:</strong> Die machen Bruder und Onkel. Ich koordiniere nur.</li>`;
+    `<li><strong>Security-Arbeit:</strong> machen Bruder und Onkel. Ich koordiniere nur, das Geld geht in den Kapital-Stack.</li>`;
 }
 
 function applyPlan() {
+  state.goals = state.goals.filter(g => !(OLD_PLAN_GOALS.includes(g.name) && g.status !== "done"));
   const names = new Set(state.goals.map(g => g.name));
   const added = [], parked = [];
   PLAN.goals.forEach(t => {

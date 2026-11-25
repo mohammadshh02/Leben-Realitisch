@@ -150,3 +150,5 @@ button, .button-like {
 .train-day td { padding: 4px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
 .train-day tr:last-child td { border-bottom: none; }
 .train-day td:last-child { text-align: right; white-space: nowrap; color: var(--muted); padding-left: 10px; }
+.steps.numbered { list-style: decimal; padding-left: 22px; }
+.steps.numbered li { padding-left: 4px; }
