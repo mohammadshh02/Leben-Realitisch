@@ -9,19 +9,79 @@ const STORAGE_KEY = "leben-realistisch-v1";
 
 // Zeitblöcke einer Woche. unit "day" = Stunden pro Tag (x7), "week" = pro Woche.
 const TIME_FIELDS = [
-  { key: "sleep",    label: "Schlaf",                                 unit: "day",  def: 7.5,
-    note: "Nicht kürzen: Schlaf ist Looks, Stimme und Fokus." },
-  { key: "job1",     label: "Elektrojob",                             unit: "week", def: 40,
-    note: "geschätzt, bitte echten Wert eintragen" },
-  { key: "job2",     label: "KI-Job (Massoud)",                       unit: "week", def: 25,
-    note: "geschätzt, bitte echten Wert eintragen" },
+  { key: "sleep",    label: "Schlaf",                                 unit: "day",  def: 8,
+    note: "Durchschnitt mit Ausschlafen am Wochenende. Nicht kürzen." },
+  { key: "job2",     label: "KI-Job / Standortleiter (Hauptjob)",     unit: "week", def: 40 },
+  { key: "job1",     label: "Elektrojob (on the side)",               unit: "week", def: 7,
+    note: "ca. 1 h pro Tag" },
   { key: "commute",  label: "Pendeln / Fahrten",                      unit: "week", def: 7 },
   { key: "security", label: "Security koordinieren (Bruder & Onkel)", unit: "week", def: 1 },
   { key: "chores",   label: "Essen, Haushalt, Körperpflege",          unit: "day",  def: 2 },
-  { key: "fixed",    label: "Feste Termine (Familie, Arzt, Ämter …)", unit: "week", def: 3 },
-  { key: "rest",     label: "Erholung, Familie, Freunde, Handy",      unit: "day",  def: 1.5,
-    note: "Kein Luxus. Wer das auf 0 setzt, plant sich kaputt." },
+  { key: "fixed",    label: "Feste Termine",                          unit: "week", def: 9,
+    note: "inkl. Sonntag 12–18 Uhr bei den Eltern" },
+  { key: "rest",     label: "Erholung, Freunde, Handy",               unit: "day",  def: 2,
+    note: "inkl. Sonntagabend in Köln. Kein Luxus." },
 ];
+const TIME_VERSION = 2; // bei Änderung der Standardwerte hochzählen
+
+/* --------------------- Lese-Sprint (20 Tage) -------------------- */
+
+const SPRINT_DEFAULT = {
+  deadline: "2026-12-15",
+  books: [
+    { title: "Buch 1", pages: 300, read: 0 },
+    { title: "Buch 2", pages: 300, read: 0 },
+  ],
+};
+
+/* ------------------------ Trainingsplan ------------------------- */
+
+const TRAINING = {
+  days: [
+    { day: "Di (nach der Arbeit)", name: "A · Obere Brust & Schultern", ex: [
+      ["Schrägbankdrücken Kurzhantel 30°", "4 × 6–10"],
+      ["Fliegende Kabel, von unten nach oben (obere Brust)", "3 × 12–15"],
+      ["Dips, Oberkörper vorgelehnt (untere Brust, Frame)", "3 × 8–12"],
+      ["Seitheben am Kabel", "4 × 12–20"],
+      ["Trizeps über Kopf am Kabel", "3 × 10–15"],
+      ["Hängendes Beinheben", "3 × 10–15"],
+    ]},
+    { day: "Do (nach der Arbeit)", name: "B · Rücken-Breite & Arme", ex: [
+      ["Klimmzüge oder Latzug breit", "4 × 6–12"],
+      ["Rudern brustgestützt (wenig Nacken)", "3 × 8–12"],
+      ["Lat-Pullover am Kabel", "3 × 12–15"],
+      ["Reverse Flys (hintere Schulter)", "3 × 15–20"],
+      ["Schrägbank-Curls Kurzhantel", "3 × 8–12"],
+      ["Hammer-Curls", "3 × 10–12"],
+      ["Cable Crunch", "3 × 10–15"],
+    ]},
+    { day: "Sa (nach dem Ausschlafen)", name: "C · Schultern & Brust", ex: [
+      ["Schulterdrücken Kurzhantel", "3 × 6–10"],
+      ["Schrägbankdrücken Multipresse", "3 × 6–10"],
+      ["Seitheben Kurzhantel", "4 × 12–20"],
+      ["Fliegende Maschine (Brust-Mitte, voll zusammendrücken)", "3 × 12–15"],
+      ["Trizepsdrücken am Kabel", "3 × 10–15"],
+      ["Bizeps-Curls am Kabel", "3 × 10–15"],
+    ]},
+    { day: "So (vor 12 Uhr)", name: "D · Lat, Arme, Bauch + kurz Beine", ex: [
+      ["Latzug eng / Untergriff", "3 × 8–12"],
+      ["Kabelrudern einarmig", "3 × 10–12"],
+      ["Seitheben (3. Mal: Kanonenkugel-Schultern)", "3 × 15–20"],
+      ["Supersatz Bizeps- und Trizeps-Kabel", "3 × 12"],
+      ["Beinpresse, nur für Gesundheit und Knie", "2 × 12–15"],
+      ["Ab-Wheel / Plank", "3 Sätze"],
+    ]},
+  ],
+  nutrition: [
+    "<strong>Start:</strong> 1,80 m · 90 kg · ca. 22 % Körperfett, also ca. 70 kg fettfreie Masse",
+    "<strong>Ziel:</strong> ca. 80 kg bei ca. 12 % (Sixpack sichtbar), danach Richtung 10 % für Adern und Härte",
+    "<strong>Tempo:</strong> 0,5–0,75 kg pro Woche, also ca. 4–5 Monate bis etwa Mai 2027",
+    "<strong>Kalorien:</strong> ca. 2.300 kcal pro Tag. Wenn 2 Wochen lang nichts runtergeht, 150 kcal weniger",
+    "<strong>Protein:</strong> 160–180 g pro Tag, damit die Muskeln bleiben, während das Fett geht",
+    "<strong>Schritte:</strong> 8.000–10.000 pro Tag. Der billigste Fettverbrenner, kostet kaum Extra-Zeit",
+    "<strong>Ehrlich:</strong> Gezielt an Beinen, Po oder Unterbauch abnehmen geht nicht. Das Fett dort geht als Letztes, aber es geht, wenn das Gesamt-Körperfett sinkt",
+  ],
+};
 
 /* ------------------------- Plan 2027 --------------------------- */
 
@@ -59,22 +119,23 @@ const PLAN = {
     },
     {
       id: "koerper", title: "3 · Körper & Ausstrahlung",
-      goal: "Lean, gesund, gepflegt. Ziel 10–13 % Körperfett, nicht weniger.",
+      goal: "90 kg / ca. 22 % → ca. 80 kg / ca. 12 %. Obere Brust, runde Schultern, breiter Lat, Arme, Sixpack. Beine nur gesund halten.",
       quarters: [
-        ["Q1", ["3× pro Woche Krafttraining, fest im Kalender",
-                "Protein-Routine und 7,5 h Schlaf",
-                "Startfoto, Gewicht und Bauchumfang festhalten"]],
-        ["Q2", ["Hautpflege, Haare/Bart und Haltung als feste Routine",
-                "Style-Basics: wenige Teile, die richtig sitzen"]],
-        ["Q3", ["Sichtbar leaner, Ziel ca. 12 % Körperfett"]],
-        ["Q4", ["10–13 % Körperfett halten, Energie und Blutwerte gut"]],
+        ["Q1", ["4er-Split steht: Di, Do, Sa, So (Trainingsplan unten)",
+                "ca. 2.300 kcal, 160–180 g Protein, 8.000–10.000 Schritte pro Tag",
+                "Startfoto, Gewicht und Bauchumfang festhalten, dann alle 2 Wochen messen",
+                "Ende März: ca. 84 kg"]],
+        ["Q2", ["ca. 80 kg bei ca. 12 %, Sixpack sichtbar",
+                "Hautpflege, Haare/Bart, Haltung und Style als feste Routine"]],
+        ["Q3", ["Rekomposition: Kalorien auf Erhaltung, Schultern, obere Brust und Lat weiter aufbauen"]],
+        ["Q4", ["10–12 % halten, Adern und Härte sichtbar, Energie und Blutwerte gut"]],
       ],
     },
   ],
   goals: [
-    { name: "Körper: 3× Training", hours: 3, step: "Trainingstage fest in den Kalender eintragen",
+    { name: "Körper: 4× Training (Ästhetik-Split)", hours: 5, step: "Di nach der Arbeit: Tag A, obere Brust & Schultern",
       why: "Präsenz, Energie, Ausstrahlung" },
-    { name: "Redner: Islam-Wissen + 1 Aufnahme/Woche", hours: 3, step: "Morgen nach Fajr 25 Min. lesen und Notizen machen",
+    { name: "Redner: Islam-Wissen + 1 Aufnahme/Woche", hours: 3, step: "Nach Fajr 25 Min. lesen; So-Abend in Köln Gespräche führen",
       why: "Islam-Vorträge, Charisma, Verkauf" },
     { name: "Baulia: erster Immo-Deal", hours: 2, step: "10 mögliche Deal-Quellen aufschreiben",
       why: "Plus machen, reinvestieren" },
@@ -92,14 +153,15 @@ const PLAN = {
     "<strong>Schlaf wird nicht gekürzt.</strong>",
   ],
   routine: [
-    ["Nach Fajr", "25 Min. Islam-Wissen mit Notizen"],
-    ["Pendeln", "Islam- oder Rhetorik-Audio (kostet keine Extra-Zeit)"],
-    ["Elektrojob", "Arbeiten. In Pausen kurz Deal-Anrufe"],
-    ["KI-Job", "Schulungen = Rhetorik-Praxis. 1× pro Woche aufnehmen"],
-    ["Mo / Mi / Fr", "Training ca. 60 Min."],
-    ["Samstag", "2 h Baulia: Deals, Anrufe, Besichtigungen. Danach Gespräche über den Islam"],
-    ["Sonntag", "15 Min. Wochen-Check in der App und Kapitalkonto prüfen"],
-    ["Jeden Abend", "Handy weg, 7,5 h Schlaf"],
+    ["Nach Fajr", "25 Min. Islam-Wissen (bis 15.12.: Lese-Sprint)"],
+    ["Mo–Fr", "KI-Job / Standortleiter, 40 h. Schulungen = Rhetorik-Praxis, 1× pro Woche aufnehmen"],
+    ["Täglich", "ca. 1 h Elektrojob, flexibel, z. B. Pause oder Abend"],
+    ["Täglich", "8.000–10.000 Schritte (Telefonate im Gehen)"],
+    ["Di / Do", "Gym nach der Arbeit (Tag A / B)"],
+    ["Samstag", "Ausschlafen → Gym (Tag C) → 2 h Baulia: Deals, Anrufe, Besichtigungen"],
+    ["Sonntag", "Ausschlafen → Gym (Tag D) → 15 Min. Wochen-Check → 12–18 Uhr Eltern"],
+    ["So-Abend", "Köln: Leute treffen = Gespräche über den Islam, Netzwerk, Deals"],
+    ["Jeden Abend", "Handy weg, Schlaf mindestens 7,5 h"],
   ],
 };
 
@@ -111,14 +173,19 @@ const QUOTE_WINDOW = 4;          // die letzten N Wochen werden berücksichtigt
 function defaultState() {
   const time = {};
   TIME_FIELDS.forEach(f => { time[f.key] = f.def; });
-  return { time, quoteDefault: 60, maxActive: 3, goals: [], checks: {}, milestones: {} };
+  return { time, timeVersion: TIME_VERSION, quoteDefault: 60, maxActive: 3, goals: [], checks: {},
+    milestones: {}, sprint: JSON.parse(JSON.stringify(SPRINT_DEFAULT)) };
 }
 
 function mergeState(data) {
   const base = defaultState();
   const merged = Object.assign(base, data);
-  merged.time = Object.assign(defaultState().time, data && data.time);
+  // Alte Zeitwerte verwerfen, wenn sich die Standardwerte geändert haben
+  const oldTime = data && (data.timeVersion || 1) >= TIME_VERSION ? data.time : {};
+  merged.time = Object.assign(defaultState().time, oldTime);
+  merged.timeVersion = TIME_VERSION;
   merged.milestones = Object.assign({}, data && data.milestones);
+  if (!merged.sprint || !Array.isArray(merged.sprint.books)) merged.sprint = defaultState().sprint;
   return merged;
 }
 
@@ -229,6 +296,7 @@ function fits(hours, ignoreId) {
 /* --------------------------- Render ---------------------------- */
 
 function render() {
+  renderSprint();
   renderOverview();
   renderPlan();
   renderTime();
@@ -287,6 +355,57 @@ function renderOverview() {
     : `<li class="empty">Noch keine Schritte. Gib bei jedem Ziel einen winzigen nächsten Schritt an.</li>`;
 }
 
+function renderSprint() {
+  const sp = state.sprint;
+  const dl = new Date(sp.deadline + "T23:59:59");
+  $("#sprint-deadline").textContent = dl.toLocaleDateString("de-DE", { day: "numeric", month: "long" });
+  const box = $("#sprint-books");
+  if (!box.dataset.built) {
+    box.innerHTML = sp.books.map((_, i) => `
+      <div class="book">
+        <label>Titel<input type="text" data-book="${i}" data-f="title"></label>
+        <label>Seiten<input type="number" min="1" data-book="${i}" data-f="pages"></label>
+        <label>gelesen<input type="number" min="0" data-book="${i}" data-f="read"></label>
+        <div class="bar"><div class="fill" data-bar="${i}"></div></div>
+      </div>`).join("");
+    box.dataset.built = "1";
+    box.addEventListener("input", e => {
+      const i = e.target.dataset.book, f = e.target.dataset.f;
+      if (i === undefined) return;
+      const b = state.sprint.books[i];
+      b[f] = f === "title" ? e.target.value : Math.max(0, Number(e.target.value) || 0);
+      saveState();
+      renderSprint();
+    });
+  }
+  box.querySelectorAll("input[data-book]").forEach(inp => {
+    if (document.activeElement !== inp) inp.value = sp.books[inp.dataset.book][inp.dataset.f];
+  });
+  sp.books.forEach((b, i) => {
+    const pct = b.pages ? Math.min(100, (b.read / b.pages) * 100) : 0;
+    box.querySelector(`[data-bar="${i}"]`).style.width = `${pct}%`;
+  });
+
+  const total = sp.books.reduce((s, b) => s + (Number(b.pages) || 0), 0);
+  const read = sp.books.reduce((s, b) => s + Math.min(Number(b.read) || 0, Number(b.pages) || 0), 0);
+  const left = Math.max(0, total - read);
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const daysLeft = Math.max(0, Math.round((new Date(sp.deadline + "T00:00:00") - today) / 86400000) + 1);
+  let cls, html;
+  if (left === 0) {
+    cls = "ok"; html = `<p><strong>Beide Bücher durch.</strong> Stark. Jetzt neu strukturieren.</p>`;
+  } else if (daysLeft === 0) {
+    cls = "bad"; html = `<p><strong>Deadline vorbei.</strong> Noch ${left} Seiten offen. Kein Drama: Setz dir ein neues, ehrliches Datum.</p>`;
+  } else {
+    const perDay = Math.ceil(left / daysLeft);
+    const min = Math.ceil(perDay * 1.5); // ca. 1,5 Min. pro Seite
+    cls = min > 60 ? "warn" : "ok";
+    html = `<p><strong>${perDay} Seiten pro Tag</strong> (ca. ${min} Min.), noch ${daysLeft} Tage, ${left} Seiten offen.</p>
+      <p class="label">Tipp: 25 Min. nach Fajr und 20 Min. abends. Bis zum 15.12. pausiert dafür Baulia.${min > 60 ? " Das ist viel: Nimm für eins der Bücher das Hörbuch beim Fahren." : ""}</p>`;
+  }
+  $("#sprint-status").innerHTML = `<div class="msg ${cls}">${html}</div>`;
+}
+
 function renderPlan() {
   const jobs = weeklyHours(TIME_FIELDS.find(f => f.key === "job1")) + weeklyHours(TIME_FIELDS.find(f => f.key === "job2"));
   const free = Math.max(0, freeHours());
@@ -298,7 +417,7 @@ function renderPlan() {
     <p>Der Plan braucht ${fmtH(planH)} pro Woche für die drei Säulen. ${fitsPlan
       ? "Das passt. Alles, was du mehr schaffst, ist Bonus."
       : "Das passt gerade nicht. Prüf die Job-Stunden unter „Meine Woche“, oder Baulia läuft erst mal auf Sparflamme."}</p>
-    <p class="label">Die Job-Stunden sind geschätzt. Trag unter „Meine Woche“ deine echten ein, dann rechnet alles neu.</p></div>`;
+    <p class="label">Ändert sich etwas an deiner Woche, trag es unter „Meine Woche“ ein. Dann rechnet alles neu.</p></div>`;
 
   $("#plan-pillars").innerHTML = PLAN.pillars.map(p => {
     const all = p.quarters.flatMap(([q, items]) => items.map((_, i) => `${p.id}-${q}-${i}`));
@@ -314,6 +433,10 @@ function renderPlan() {
     </div>`;
   }).join("");
 
+  $("#plan-training").innerHTML = TRAINING.days.map(d => `<div class="train-day">
+    <h3>${esc(d.name)}</h3><div class="when">${esc(d.day)}</div>
+    <table>${d.ex.map(([n, r]) => `<tr><td>${esc(n)}</td><td>${esc(r)}</td></tr>`).join("")}</table></div>`).join("");
+  $("#plan-nutrition").innerHTML = TRAINING.nutrition.map(n => `<li>${n}</li>`).join("");
   $("#plan-rules").innerHTML = PLAN.rules.map(r => `<li>${r}</li>`).join("");
   $("#plan-routine").innerHTML = PLAN.routine.map(([t, w]) => `<tr><td>${esc(t)}</td><td>${esc(w)}</td></tr>`).join("");
   $("#plan-parked").innerHTML = PLAN.later.map(g => `<li><strong>${esc(g.name)}:</strong> ${esc(g.step)}</li>`).join("") +

@@ -138,3 +138,15 @@ button, .button-like {
 .progress { font-size: 0.85rem; color: var(--muted); font-weight: normal; }
 .routine td:first-child { color: var(--muted); white-space: nowrap; padding-right: 12px; }
 .routine td { text-align: left !important; vertical-align: top; }
+
+/* Lese-Sprint & Training */
+.book { display: grid; grid-template-columns: 1fr 80px 80px; gap: 8px; align-items: end; margin-bottom: 10px; }
+.book label { display: flex; flex-direction: column; gap: 2px; font-size: 0.8rem; color: var(--muted); }
+.book .bar { grid-column: 1 / -1; margin: 0; height: 8px; }
+.train-day { border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+.train-day h3 { margin: 0 0 2px; font-size: 1rem; }
+.train-day .when { color: var(--muted); font-size: 0.85rem; margin-bottom: 8px; }
+.train-day table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.train-day td { padding: 4px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.train-day tr:last-child td { border-bottom: none; }
+.train-day td:last-child { text-align: right; white-space: nowrap; color: var(--muted); padding-left: 10px; }
